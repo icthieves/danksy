@@ -1,7 +1,8 @@
 # Danksy (A PixelPals Stencil for Node\.js)
 
 After a night of ~~googling~~ *Learning* Node\.js, I wrote a simple script that paints a picture to a [PixelPals](https://github.com/eternalthinker/pixelpals) canvas.
-
+[This was the result](https://youtu.be/BYCcExb9uqs)
+	
 Usage: 
 ```javascript
 node danksy.js "Abolute/path/to/image.png" [x-offset y-offset]
