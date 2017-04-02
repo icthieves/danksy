@@ -42,8 +42,8 @@ getPixels(process.argv[2], function(err, pixels) {
   // create an object to store all changed pixels
   // this way the server receives one large update, rather than being spammed for every pixel
   const obj = {};
-  for(var i=0; i<pixels.shape[0]&&i<width; i++){
-	for(var j=0; j<pixels.shape[1]&&j<height; j++){
+  for(var i=0; i<pixels.shape[0]&&i<height; i++){
+	for(var j=0; j<pixels.shape[1]&&j<width; j++){
 		// log and add the pixel to output array
 		var pix = getPixel(j,i,pixels);
 		console.log('#'+pix[0].toString(16)+pix[1].toString(16)+pix[2].toString(16));
