@@ -6,13 +6,14 @@ After a night of ~~googling~~ *Learning* Node\.js, I wrote a simple script that 
 	
 Usage: 
 ```javascript
-node danksy.js "Abolute/path/to/image.png" [x-offset y-offset]
+node danksy.js "Abolute/path/to/image.png" [x-offset y-offset [canvasid]]
 ```
 
 Features:
 
  * Uses [getpixels](https://www.npmjs.com/package/get-pixels), meaning it works with PNG, GIF, and JPG.
  * Writes the entire canvas in a single update to help prevent spamming the server.
+ * Supports arbitrary canvasIDs (defaults to public). Must specify offsets explicitly, then canvasID.
  * Fun!
 
 

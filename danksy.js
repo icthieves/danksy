@@ -24,15 +24,20 @@ function getPixel(x, y, pixels) {
     return out;
 }
 
-var getPixels = require("get-pixels")
+
 // starting offsets (top left is origin (0,0))
 var x = (process.argv.length < 5) ? 0 : parseInt(process.argv[3]);
 var y = (process.argv.length < 5) ? 0 : parseInt(process.argv[4]);
+
 // maximum dimensions of the canvas (to prevent overruns)
 var width = 150;
 var height = 120;
 
+// canvasID
+var canvasid = (process.argv.length < 6)? '/public' : '/'+process.argv[5];
+
 // read a gif, png, or jpg into an ndarray
+var getPixels = require("get-pixels")
 getPixels(process.argv[2], function(err, pixels) {
   if(err) {
     console.log("Bad image path")
@@ -42,8 +47,8 @@ getPixels(process.argv[2], function(err, pixels) {
   // create an object to store all changed pixels
   // this way the server receives one large update, rather than being spammed for every pixel
   const obj = {};
-  for(var i=0; i<pixels.shape[0]&&i<height; i++){
-	for(var j=0; j<pixels.shape[1]&&j<width; j++){
+  for(var i=0; i<pixels.shape[0]; i++){
+	for(var j=0; j<pixels.shape[1]; j++){
 		// log and add the pixel to output array
 		var pix = getPixel(j,i,pixels);
 		console.log('#'+pix[0].toString(16)+pix[1].toString(16)+pix[2].toString(16));
@@ -51,7 +56,7 @@ getPixels(process.argv[2], function(err, pixels) {
 	}
   }
 	// send the pixel update to the server
-	firebase.update('/public', obj);
+	firebase.update(canvasid, obj);
 	// getPixels info
     // console.log("got pixels", pixels.shape.slice());
 })
